@@ -1,0 +1,40 @@
+// app.js
+
+jQuery(document).ready(function() {
+
+	var apiUrl = 'http://www.ur-net.go.jp/kansai-akiya/xml_room/';
+
+	$('.house').each(function (idx,house) {
+
+		var id = $('.id', house).html();
+		var reqUrl = apiUrl + id + '.json';
+
+		$.getJSON('http://whateverorigin.org/get?url=' 
+					+ encodeURIComponent(reqUrl) + '&callback=?', 
+			function(data){
+
+				if (data.status.http_code === 200) {
+					var json = eval("(" + data.contents + ")");
+
+					json.ROOMS.forEach(function (apartment) {
+
+						var roomUrl = 'http://www.ur-net.go.jp/kansai-akiya/hyogo/' 
+										+ id + '_room.html?JKSS=' + apartment.JKNO;
+
+						$('ul', house).append('<li class="list-group-item text-primary"><span class="badge">' 
+							+ apartment.ROOMTYPENM + '</span><span class="glyphicon glyphicon-thumbs-up"></span>' 
+							+ '<a href="' + roomUrl + '" target="_blank"> '
+							+ 'Apartment ' + apartment.ROOMNO + ', '
+							+ 'Size: ' + apartment.MEMSEKI + ', '
+							+ 'Floor: ' + apartment.FLOOR + '/' + apartment.BHFLOOR + ', '
+							+ 'Rent: ' + apartment.RENTGK + ' JPY</a></li>');  
+					});
+				}
+				else {
+					$('ul', house).append('<li class="list-group-item text-danger"><span class="glyphicon glyphicon-warning-sign"></span> No apartments available.</li>');  
+				}
+			}
+		);
+
+	});
+});
