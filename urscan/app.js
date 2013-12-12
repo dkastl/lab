@@ -21,13 +21,13 @@ jQuery(document).ready(function() {
 						var roomUrl = 'http://www.ur-net.go.jp/kansai-akiya/hyogo/' 
 										+ id + '_room.html?JKSS=' + apartment.JKNO;
 
-						$('ul', house).append('<li class="list-group-item text-primary"><span class="badge">' 
+						$('ul', house).append('<li class="list-group-item text-success"><span class="badge">' 
 							+ apartment.ROOMTYPENM + '</span><span class="glyphicon glyphicon-thumbs-up"></span>' 
 							+ '<a href="' + roomUrl + '" target="_blank"> '
-							+ 'Apartment ' + apartment.ROOMNO + ', '
+							+ 'Apartment ' + apartment.ROOMNO + '</a>, '
 							+ 'Size: ' + apartment.MEMSEKI + ', '
 							+ 'Floor: ' + apartment.FLOOR + '/' + apartment.BHFLOOR + ', '
-							+ 'Rent: ' + apartment.RENTGK + ' JPY</a></li>');  
+							+ 'Rent: ' + apartment.RENTGK + ' JPY</li>');  
 					});
 				}
 				else {
