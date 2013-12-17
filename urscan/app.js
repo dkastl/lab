@@ -7,7 +7,7 @@ jQuery(document).ready(function() {
 	$('.house').each(function (idx,house) {
 
 		var id = $('.id', house).html();
-		var reqUrl = apiUrl + id + '.json';
+		var reqUrl = apiUrl + id + '0.json';
 
 		$.getJSON('http://whateverorigin.org/get?url=' 
 					+ encodeURIComponent(reqUrl) + '&callback=?', 
@@ -19,7 +19,7 @@ jQuery(document).ready(function() {
 					json.ROOMS.forEach(function (apartment) {
 
 						var roomUrl = 'http://www.ur-net.go.jp/kansai-akiya/hyogo/' 
-										+ id + '_room.html?JKSS=' + apartment.JKNO;
+										+ id + '0_room.html?JKSS=' + apartment.JKNO;
 
 						$('ul', house).append('<li class="list-group-item text-success"><span class="badge">' 
 							+ apartment.ROOMTYPENM + '</span><span class="glyphicon glyphicon-thumbs-up"></span>' 
