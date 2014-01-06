@@ -21,7 +21,8 @@ jQuery(document).ready(function() {
 						var roomUrl = 'http://www.ur-net.go.jp/kansai-akiya/hyogo/' 
 										+ id + '0_room.html?JKSS=' + apartment.JKNO;
 
-						$('ul', house).append('<li class="list-group-item text-success"><span class="badge">' 
+						$('ul', house).append('<li class="list-group-item text-success">' 
+							+ '<span class="badge yoyaku-' + apartment.YOYAKU + '">' 
 							+ apartment.ROOMTYPENM + '</span><span class="glyphicon glyphicon-thumbs-up"></span>' 
 							+ '<a href="' + roomUrl + '" target="_blank"> '
 							+ 'Apartment ' + apartment.ROOMNO + '</a>, '
