@@ -5,7 +5,8 @@ set -e # Exit script immediately on first error.
 PATHNAME=$(cd `dirname $0` && pwd)
 
 # Items
-ITEMS=(411 482 484)
+ITEMS=(482 411 428 429 484 499 478 415 431 442 432 441)
+NAME="UR Apartment"
 
 # Check on "kansai-akiya" website
 for ITEM in "${ITEMS[@]}"
@@ -14,6 +15,22 @@ do
 	    touch "/tmp/${ITEM}.current"
 	fi
 	
+	# Get some understandable names
+    case ${ITEM} in
+        482) NAME="ＫＯＢＥ・岡本";;
+        411) NAME="シティコート住吉本町";;
+        428) NAME="フレール東芦屋町";;
+        429) NAME="フレール芦屋朝日ヶ丘";;
+        484) NAME="グリーンヒルズ御影";;
+        499) NAME="ウェルブ六甲道４番街";;
+        478) NAME="ＡＣＴＡ西宮";;
+        415) NAME="ＨＡＴ神戸・灘の浜";;
+        431) NAME="ＨＡＴ神戸・脇の浜";;
+        442) NAME="ルゼフィール岩屋中町";;
+        432) NAME="ルネシティ脇浜町";;
+        441) NAME="ルネシティ脇浜町第２";;
+    esac
+
 	# Backup previous hash
 	cp "/tmp/${ITEM}.current" "/tmp/${ITEM}.history"
 
@@ -26,7 +43,7 @@ do
 	then
 		# Files have changed. Send email:
 		ADDRESS="mail@example.com"
-		SUBJECT="[UR-Scan] Update detected in ${ITEM}"
+		SUBJECT="[UR-Scan] Update detected in ${NAME} [${ITEM}]"
 		CONTENT="Check http://lab.karida.de/urscan/ for details."
 		(echo ${CONTENT}) | mailx -s "${SUBJECT}" ${ADDRESS}
 	fi
@@ -39,6 +56,22 @@ do
 	    touch "/tmp/${ITEM}_sumai.current"
 	fi
 	
+	# Get some understandable names
+    case ${ITEM} in
+        482) NAME="ＫＯＢＥ・岡本";;
+        411) NAME="シティコート住吉本町";;
+        428) NAME="フレール東芦屋町";;
+        429) NAME="フレール芦屋朝日ヶ丘";;
+        484) NAME="グリーンヒルズ御影";;
+        499) NAME="ウェルブ六甲道４番街";;
+        478) NAME="ＡＣＴＡ西宮";;
+        415) NAME="ＨＡＴ神戸・灘の浜";;
+        431) NAME="ＨＡＴ神戸・脇の浜";;
+        442) NAME="ルゼフィール岩屋中町";;
+        432) NAME="ルネシティ脇浜町";;
+        441) NAME="ルネシティ脇浜町第２";;
+    esac
+
 	# Backup previous count
 	cp "/tmp/${ITEM}_sumai.current" "/tmp/${ITEM}_sumai.history"
 
@@ -50,7 +83,7 @@ do
 	then
 		# Files have changed. Send email:
 		ADDRESS="mail@example.com"
-		SUBJECT="[UR-SUMAI] Reservation available in ${ITEM}"
+		SUBJECT="[UR-SUMAI] Reservation available in ${NAME} [${ITEM}]"
 		CONTENT="Check http://lab.karida.de/urscan/ for details."
 		(echo ${CONTENT}) | mailx -s "${SUBJECT}" ${ADDRESS}
 	fi
